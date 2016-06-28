@@ -1,0 +1,36 @@
+﻿@model Blog.Models.ArticleViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Редактирование статьи</title>
+</head>
+<body>
+    <div>
+        @Html.BeginForm("UpdateArticle", "Article")
+        {
+            @Html.AntiForgeryToken()
+        <h4>Редактирование статьи</h4>
+            @Html.ValidationSummary(true, "")
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title)
+        @Html.ValidationMessageFor(m => m.Title)
+
+        @Html.LabelFor(m => m.Content)
+        @Html.TextAreaFor(m => m.Content)
+
+        @Html.LabelFor(m => m.Tags)
+        @Html.TextAreaFor(m => m.Tags)
+        @Html.Action("GetTagsOfArticle", "Tag", new { articleId = @Model.Id })
+                
+        <input type="submit" id="editArticle" value="Сохранить статью" />
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+﻿@model Blog.Models.LogOnViewModel
+
+
+@Html.ActionLink(@Model.Login, "ViewArticlesOfBlogger", new { controller = "Article", bloggerId = @ViewBag.Id})

@@ -1,0 +1,8 @@
+﻿@model Blog.Models.SearchViewModel
+
+@using (Html.BeginForm("Search", "Search"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "")
+    @Html.TextBoxFor(m => m.SearchString, new { @id = "search", @autocomplete = "off", @placeholder = "Поиск" })
+}  

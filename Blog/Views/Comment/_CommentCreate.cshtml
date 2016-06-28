@@ -1,0 +1,18 @@
+﻿@model Blog.ViewModels.CommentViewModel
+
+@using (Ajax.BeginForm("AddComment", "Comment", new { articleId = ViewBag.ArticleId }, new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "all_comments"
+}))
+{
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "")
+    @Html.LabelFor(model => model.Content)
+    
+    @Html.TextAreaFor(model => model.Content)
+    @Html.ValidationMessageFor(model => model.Content)
+    
+    <input type="submit" class="button" value="Ответить" id="send_comment" />
+}

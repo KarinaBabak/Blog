@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{738BC187-F16C-4598-9B8B-490EB4B53E01}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Blog.DAL.Interface</RootNamespace>
+    <AssemblyName>Blog.DAL.Interface</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DTO\DalArticle.cs" />
+    <Compile Include="DTO\DalComment.cs" />
+    <Compile Include="DTO\DalMarker.cs" />
+    <Compile Include="DTO\DalRole.cs" />
+    <Compile Include="DTO\DalRoleUser.cs" />
+    <Compile Include="DTO\DalSection.cs" />
+    <Compile Include="DTO\DalTag.cs" />
+    <Compile Include="DTO\DalTagArticle.cs" />
+    <Compile Include="DTO\DalUser.cs" />
+    <Compile Include="DTO\IEntity.cs" />
+    <Compile Include="Interface\IArticleRepository.cs" />
+    <Compile Include="Interface\ICommentRepository.cs" />
+    <Compile Include="Interface\IMarkerRepository.cs" />
+    <Compile Include="Interface\IRepository.cs" />
+    <Compile Include="Interface\IRoleRepository.cs" />
+    <Compile Include="Interface\IRoleUserRepository.cs" />
+    <Compile Include="Interface\ISectionRepository.cs" />
+    <Compile Include="Interface\ITagArticleRepository.cs" />
+    <Compile Include="Interface\ITagRepository.cs" />
+    <Compile Include="Interface\IUnitOfWork.cs" />
+    <Compile Include="Interface\IUserRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Blog.DAL.Entities\Blog.DAL.Entities.csproj">
+      <Project>{7c83a779-c853-496d-8dd8-729ab5874737}</Project>
+      <Name>Blog.DAL.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

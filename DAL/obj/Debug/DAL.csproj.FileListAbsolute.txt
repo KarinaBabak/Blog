@@ -1,0 +1,14 @@
+D:\Epam\Итог\Blog\Blog\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\Epam\Итог\Blog\Blog\DAL\bin\Debug\DAL.dll.config
+D:\Epam\Итог\Blog\Blog\DAL\bin\Debug\DAL.dll
+D:\Epam\Итог\Blog\Blog\DAL\bin\Debug\DAL.pdb
+D:\Epam\Итог\Blog\Blog\DAL\bin\Debug\Blog.DAL.Entities.dll
+D:\Epam\Итог\Blog\Blog\DAL\bin\Debug\Blog.DAL.Interface.dll
+D:\Epam\Итог\Blog\Blog\DAL\bin\Debug\EntityFramework.dll
+D:\Epam\Итог\Blog\Blog\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Epam\Итог\Blog\Blog\DAL\bin\Debug\Blog.DAL.Entities.pdb
+D:\Epam\Итог\Blog\Blog\DAL\bin\Debug\Blog.DAL.Interface.pdb
+D:\Epam\Итог\Blog\Blog\DAL\bin\Debug\EntityFramework.xml
+D:\Epam\Итог\Blog\Blog\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Epam\Итог\Blog\Blog\DAL\obj\Debug\DAL.dll
+D:\Epam\Итог\Blog\Blog\DAL\obj\Debug\DAL.pdb

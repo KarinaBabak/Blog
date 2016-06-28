@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Blog.Models.ArticleModel>
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Блог пользователя</title>
+    @Html.Partial("~/Views/Shared/Header.cshtml")
+</head>
+<body>
+    <div id="main">
+        <div id="left_content" style="background-image: url('/Content/images/index.jpg')">
+            <div id="txt">
+                <h1>Блог пользователя</h1>
+                <p id="user"><img src="/Content/images/icon_user_white.png" /> @Html.ActionLink(@Model.FirstOrDefault().Blogger.Login, "ViewArticlesOfBlogger", new { controller = "Article", bloggerId = @Model.FirstOrDefault().Blogger.Id })</p>
+            </div>
+        </div>
+
+        <div id="right_content">
+            @Html.Partial("~/Views/Shared/TopMenu.cshtml")
+
+            @foreach (var article in Model)
+            {
+                @Html.Action("PreViewArticle", "Article", new { articleId = article.Id })
+            }
+        </div>
+    </div>
+</body>
+</html>

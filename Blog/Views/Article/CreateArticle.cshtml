@@ -1,0 +1,47 @@
+﻿@model Blog.Models.ArticleViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create Article</title>
+</head>
+<body>
+    <div>
+    @using (@Html.BeginForm("CreateArticle", "Article"))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Добавление статьи</h4>
+        @Html.ValidationSummary(true, "", new { @class = "text-error" })
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Title)
+            @Html.TextBoxFor(m => m.Title)
+            @Html.ValidationMessageFor(m => m.Title)
+        </div>
+
+        @Html.LabelFor(m => m.Content)
+        @Html.TextAreaFor(m => m.Content)
+        <div>
+            @Html.LabelFor(m => m.Tags)
+            @Html.TextAreaFor(m => m.Tags)
+        </div>
+
+    <div>
+        @Html.Action("ShowAllSections", "Section")
+    </div>
+    <div>
+        @Html.Action("ViewArticle", "Article")
+    </div>
+
+                <div>
+                <input type="submit" id="createArticle" value="Опубликовать статью" />
+            </div>
+    }
+    </div>
+</body>
+</html>

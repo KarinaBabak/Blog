@@ -1,0 +1,65 @@
+﻿@model Blog.Models.RegisterViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация</title>
+    @Html.Partial("~/Views/Shared/Header.cshtml")
+</head>
+<body>
+    <div id="main">
+        <div id="left_content" style="background-image: url('/Content/images/registration.jpg')">
+            <div id="txt">
+                <h1>Регистрация</h1>
+                <p>Присоединиться к нашему сообществу</p>
+            </div>
+        </div>
+
+        <div id="right_content">
+            @Html.Partial("~/Views/Shared/TopMenu.cshtml")
+
+            @using (@Html.BeginForm("Register", "Account"))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-error" })
+
+
+                @Html.LabelFor(m => m.Login)
+                @Html.TextBoxFor(m => m.Login)
+                @Html.ValidationMessageFor(m => m.Login, null, new { @class = "text-error" })
+
+
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email)
+                @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-error" })
+
+
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name)
+                @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-error" })
+
+
+                @Html.LabelFor(m => m.Surname)
+                @Html.TextBoxFor(m => m.Surname)
+                @Html.ValidationMessageFor(m => m.Surname, null, new { @class = "text-error" })
+
+
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+
+
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword)
+                @Html.ValidationMessageFor(m => m.ConfirmPassword, null, new { @class = "text-error" })
+
+                <div id ="error_registration">
+                <span>@ViewBag.Message</span> <input type="submit" id="registration" value="Зарегистрироваться" class="button"/>
+                </div>
+            }
+        </div>
+        </div>
+</body>
+</html>

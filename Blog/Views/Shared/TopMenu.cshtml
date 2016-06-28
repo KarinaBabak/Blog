@@ -1,0 +1,27 @@
+﻿<div id="top_menu">
+    <a href="/">Последние статьи</a>
+    <a href="#">Архив</a>
+    @if (Request.IsAuthenticated)
+    {
+        <span id="show">
+            <a href="/Account/Login" id="user_name">@HttpContext.Current.User.Identity.Name</a>
+            <span id="hide">
+                <a href="#"><img src="/Content/images/menu_icon_add_article.png"> Добавить статью</a>
+                <a href="#"><img src="/Content/images/menu_icon_profile.png"> Мой профиль</a>
+                <a href="#"><img src="/Content/images/menu_icon_mark.png"> Закладки</a>
+            </span>
+        </span>
+
+        @Html.ActionLink("Выйти", "LogOff", new { controller = "Account" })
+    }
+    else
+    {
+        <a href="/Account/Login" id="login">Вход</a>
+        <a href="/Account/Register" id="registration">Регистрация</a>
+    }     
+    
+    @Html.Action("Index", "Search")
+
+    <div id="live_search"> </div>
+
+</div>

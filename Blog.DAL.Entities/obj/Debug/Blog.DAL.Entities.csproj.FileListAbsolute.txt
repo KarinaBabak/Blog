@@ -1,0 +1,10 @@
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Entities\bin\Debug\Blog.DAL.Entities.dll.config
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Entities\bin\Debug\Blog.DAL.Entities.dll
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Entities\bin\Debug\Blog.DAL.Entities.pdb
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Entities\bin\Debug\EntityFramework.dll
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Entities\bin\Debug\EntityFramework.SqlServer.dll
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Entities\bin\Debug\EntityFramework.xml
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Entities\bin\Debug\EntityFramework.SqlServer.xml
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Entities\obj\Debug\Blog.DAL.Entities.dll
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Entities\obj\Debug\Blog.DAL.Entities.pdb
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Entities\obj\Debug\Blog.DAL.Entities.csprojResolveAssemblyReference.cache

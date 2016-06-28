@@ -1,0 +1,29 @@
+﻿@model Blog.Models.RegisterViewModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>    
+    <title>Главная</title>
+    @Html.Partial("~/Views/Shared/Header.cshtml")
+</head>
+<body>
+    <div id="main">
+        <div id="left_content" style="background-image: url('/Content/images/index.jpg')">
+            <div id="txt">
+                <h1>Последние статьи</h1>
+                <p>Последние записи из блогов пользователей</p>
+            </div>
+        </div>
+
+
+        <div id="right_content">
+            @Html.Partial("~/Views/Shared/TopMenu.cshtml")
+
+            @Html.Action("TopPreViewArticle", "Article")
+        </div>
+    </div>
+</body>
+</html>

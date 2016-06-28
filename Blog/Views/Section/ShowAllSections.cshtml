@@ -1,0 +1,5 @@
+﻿@model Blog.Models.AllSectionsViewModel
+
+
+@Html.DropDownListFor(model => model.SectionId, new SelectList(Model.Sections, "Id", "Name"), "Выберите раздел")
+

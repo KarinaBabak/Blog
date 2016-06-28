@@ -1,0 +1,7 @@
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Interface\obj\Debug\Blog.DAL.Interface.csprojResolveAssemblyReference.cache
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Interface\bin\Debug\Blog.DAL.Interface.dll
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Interface\bin\Debug\Blog.DAL.Interface.pdb
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Interface\bin\Debug\Blog.DAL.Entities.dll
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Interface\bin\Debug\Blog.DAL.Entities.pdb
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Interface\obj\Debug\Blog.DAL.Interface.dll
+D:\Epam\Итог\Blog\Blog\Blog.DAL.Interface\obj\Debug\Blog.DAL.Interface.pdb
