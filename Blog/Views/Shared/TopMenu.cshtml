@@ -1,18 +1,24 @@
 ﻿<div id="top_menu">
     <a href="/">Последние статьи</a>
-    <a href="#">Архив</a>
+    <a href="/Section/AllArticlesBySections">Архив</a>
     @if (Request.IsAuthenticated)
     {
         <span id="show">
             <a href="/Account/Login" id="user_name">@HttpContext.Current.User.Identity.Name</a>
             <span id="hide">
-                <a href="#"><img src="/Content/images/menu_icon_add_article.png"> Добавить статью</a>
-                <a href="#"><img src="/Content/images/menu_icon_profile.png"> Мой профиль</a>
-                <a href="#"><img src="/Content/images/menu_icon_mark.png"> Закладки</a>
+                <img src="/Content/images/menu_icon_add_article.png"> 
+                @Html.ActionLink("Добавить статью", "CreateArticle", new { controller = "Article" }) 
+                <img src="/Content/images/menu_icon_profile.png"> 
+                @Html.ActionLink("Мой профиль", "GetBloggerProfile", new { controller = "Account", bloggerLogin = @HttpContext.Current.User.Identity.Name }) 
+                @if (User.IsInRole("admin"))
+                {
+                    <img src="/Content/images/icon_edit.png">  @Html.ActionLink("Категории", "WorkWithSections", new { controller = "Section" })
+                }
             </span>
         </span>
 
         @Html.ActionLink("Выйти", "LogOff", new { controller = "Account" })
+        
     }
     else
     {

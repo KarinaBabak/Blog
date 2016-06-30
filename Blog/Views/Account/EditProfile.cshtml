@@ -1,0 +1,59 @@
+﻿@model Blog.Models.UserModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактирование профиля</title>
+    @Html.Partial("~/Views/Shared/Header.cshtml")
+</head>
+<body>
+    <div id="main">
+        <div id="left_content" style="background-image: url('/Content/images/edit_article.jpg')">
+            <div id="txt">
+                <h1>Редактирование профиля</h1>
+            </div>
+        </div>
+
+        <div id="right_content">
+            @Html.Partial("~/Views/Shared/TopMenu.cshtml")
+
+            @using (@Html.BeginForm("EditBloggerProfile", "Account"))
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "")
+
+                @Html.Label("Логин:")
+                @Html.TextBoxFor(m => m.Login)
+
+                @Html.Label("Email:")
+                @Html.TextBoxFor(m => m.Email)
+
+                @Html.Label("Имя:")
+                @Html.TextBoxFor(m => m.Name)
+
+                @Html.Label("Фамилия:")
+                @Html.TextBoxFor(m => m.Surname)
+
+                @Html.Label("Возраст:")
+                @Html.TextBoxFor(m => m.Age)
+
+                @Html.Label("Обо мне:")
+                @Html.TextAreaFor(m => m.AdditionalInfo)
+
+                @Html.HiddenFor(m => m.Password)
+                @Html.HiddenFor(m => m.Id)
+                @Html.HiddenFor(m => m.DateRegistration)
+                @Html.HiddenFor(m => m.Photo)
+                @Html.HiddenFor(m => m.IsBlocked)
+
+
+                <input type="submit" id="editProfile" value="Сохранить изменения" class="button" />
+            }
+        </div>
+    </div>
+</body>
+</html>

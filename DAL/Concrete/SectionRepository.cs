@@ -72,6 +72,7 @@ namespace DAL.Concrete
             if (section != null)
             {
                 context.Set<Section>().Remove(section);
+                context.SaveChanges();
             }
         }
 

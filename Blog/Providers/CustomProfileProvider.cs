@@ -77,8 +77,7 @@ namespace Blog.Providers
                 foreach (SettingsPropertyValue value in collection)
                 {
                     user.GetType().GetProperty(value.Property.Name).SetValue(user, value.PropertyValue);
-                }
-                user.DateLastVisit = DateTime.Now;
+                }                
             }
         }
         public override string ApplicationName { get; set; }

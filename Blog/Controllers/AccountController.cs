@@ -74,7 +74,7 @@ namespace Blog.Controllers
         {
             var type = HttpContext.User.GetType();
             var iden = HttpContext.User.Identity.GetType();
-            ViewBag.Url = url;
+            ViewBag.Url = url;            
             return View();
         }
 
@@ -89,35 +89,15 @@ namespace Blog.Controllers
                 if (Membership.ValidateUser(viewModel.Login, viewModel.Password))
                 {
                     FormsAuthentication.SetAuthCookie(viewModel.Login, viewModel.RememberMe);
-
-                    //        return new JsonResult()
-                    //        {
-                    //            Data = new
-                    //            {
-                    //                isValid = true
-                    //            }
-                    //        };
-                    //    }
-                    //    else
-                    //    {
-                    //        return new JsonResult()
-                    //            {
-                    //                Data = new
-                    //                {
-                    //                    isValid = false,
-                    //                    errorMessage = "Некорректный логин или пароль"
-                    //                }
-                    //            };
-                    //    }
-                    //}
-                    //return Json(new
-                    //{
-                    //    isValid = false,
-                    //    errorMessage = "Проверьте введенные данные"
-                    //});
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Некорректный логин или пароль");
                 }
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
+            
         }
 
         /// <summary>
@@ -138,6 +118,48 @@ namespace Blog.Controllers
             var user = service.GetUserEntityById(senderId);
             ViewBag.Id = senderId;
             return PartialView("Blogger", user.ToLogInModelUser());
+        }
+
+        [HttpGet]
+        [AllowAnonymous]    
+        public ActionResult GetBloggerProfile(string bloggerLogin)
+        {
+            var user = service.GetUserByLogin(bloggerLogin).ToModelUser();
+            return View("Profile", user);
+        }
+
+        [HttpGet]
+        public ActionResult EditBloggerProfile(int bloggerId)
+        {
+            var user = service.GetUserEntityById(bloggerId).ToModelUser();
+            return View("EditProfile", user);
+        }
+
+        [HttpPost]
+        public ActionResult EditBloggerProfile(UserModel model)
+        {
+            if (ModelState.IsValid)
+            {                
+                service.UpdateUser(model.ToBllUser());
+            }
+            return RedirectToAction("GetBloggerProfile", "Account", new { bloggerLogin = model.Login });
+        }
+
+        public void BlockUser(int bloggerId)
+        {
+            service.BlockUser(bloggerId);
+        }
+
+        public void UnBlockUser(int bloggerId)
+        {
+            service.UnBlockUser(bloggerId);
+        }
+
+        public bool IsBlocked(int bloggerId)
+        {
+            if (service.GetUserEntityById(bloggerId).IsBlocked == true) 
+                return true;
+            return false;
         }
     }
 }

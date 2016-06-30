@@ -1,18 +1,18 @@
 $(function () {
 
-    var fromSearch = $('input#search'),
+    var formSearch = $('input#search'),
         query = $('#qSearch').text(),
-        search_content = $('#right_content #article'),
-        live_search = $(' #top_menu #live_search');
+        search_content = $('#right_content #search_result'),
+        live_search = $('#top_menu #live_search');
 
     color_searched_text(query, search_content);
 
-    if ($('#qSearch').length > 0) fromSearch.val(query).focus();
+    if ($('#qSearch').length > 0) formSearch.val(query).focus();
 
 
 
-    fromSearch.on('textchange', function () {
-        var query = fromSearch.val();
+    formSearch.on('textchange', function () {
+        var query = formSearch.val();
 
         if (typeof sTimeout != "undefined") clearTimeout(sTimeout);
         if (typeof hideTimeout != "undefined") clearTimeout(hideTimeout);
@@ -59,16 +59,16 @@ $(function () {
 
 
     function color_searched_text(query, replaceable_text) {
-        reg_q = new RegExp(query, 'ig'),
-        _this = replaceable_text,
-        text = _this.text(),
-        result = text.search(reg_q)
+        var reg_q = new RegExp(query, 'ig'),
+            _this = replaceable_text,
+            text = _this.text(),
+            result = text.search(reg_q);
 
         if (query != '' && result != -1) {
             var matches = new Object();
 
             while ((result = reg_q.exec(text)) != null) {
-                matches[result[0]] = '<font id="selection">' + result[0] + '</font>';
+                matches[result[0]] = '<span id="selection">' + result[0] + '</span>';
             }
 
             var result = _this.html().replace(
@@ -82,7 +82,6 @@ $(function () {
     }
 
 
-
     function empty(mixed_var) {
         return (typeof mixed_var == "undefined" || mixed_var === "" || mixed_var === 0 || mixed_var === "0" || mixed_var === null || mixed_var === false || (typeof mixed_var == "string" && mixed_var.replace(/^\s+|\s+$/g, '') === '') || (is_array(mixed_var) && mixed_var.length === 0));
     }
@@ -93,6 +92,9 @@ $(function () {
 });
 
 
+function input_clear_comment() {
+    $("#article form[action*=AddComment] textarea").val('');
+}
 
 
 /*!

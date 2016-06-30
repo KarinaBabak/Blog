@@ -34,7 +34,6 @@ namespace DAL.Concrete
                     Id = user.Id,
                     AdditionalInfo = user.AdditionalInfo,
                     Age = user.Age,
-                    DateLastVisit = user.DateLastVisit,
                     DateRegistration = user.DateRegistration,
                     Email = user.Email,
                     IsBlocked = user.IsBlocked,
@@ -57,18 +56,6 @@ namespace DAL.Concrete
             return null;
         }
 
-        /// <summary>
-        /// Getting the date of last visit of user
-        /// </summary>
-        /// <param name="id">id of user</param>
-        /// <returns>date of last visit of user</returns>
-        public DateTime? GetDateLastVisit(int id)
-        {
-            var user = context.Set<User>().Where(i => i.Id == id).FirstOrDefault();
-            if (user.DateLastVisit != null)
-                return user.DateLastVisit;
-            return null;
-        }
         /// <summary>
         /// Determination of blocking user
         /// </summary>
@@ -105,8 +92,7 @@ namespace DAL.Concrete
             {
                Id = user.Id,
                AdditionalInfo = user.AdditionalInfo,
-               Age = user.Age,
-               DateLastVisit = user.DateLastVisit,
+               Age = user.Age,               
                DateRegistration = user.DateRegistration,
                Email = user.Email,
                IsBlocked = user.IsBlocked,
@@ -126,8 +112,7 @@ namespace DAL.Concrete
             {
                 Id = user.Id,
                 AdditionalInfo = user.AdditionalInfo,
-                Age = user.Age,
-                DateLastVisit = user.DateLastVisit,
+                Age = user.Age,              
                 DateRegistration = user.DateRegistration,
                 Email = user.Email,
                 IsBlocked = user.IsBlocked,
@@ -160,8 +145,7 @@ namespace DAL.Concrete
             {
                 Id = dalUser.Id,
                 AdditionalInfo = dalUser.AdditionalInfo,
-                Age = dalUser.Age,
-                DateLastVisit = dalUser.DateLastVisit,
+                Age = dalUser.Age,               
                 DateRegistration = dalUser.DateRegistration,
                 Email = dalUser.Email,
                 IsBlocked = dalUser.IsBlocked,
@@ -217,8 +201,7 @@ namespace DAL.Concrete
             {
                 user.Id = entity.Id;
                 user.AdditionalInfo = entity.AdditionalInfo;
-                user.Age = entity.Age;
-                user.DateLastVisit = entity.DateLastVisit;
+                user.Age = entity.Age;                
                 user.DateRegistration = entity.DateRegistration;
                 user.Email = entity.Email;
                 user.IsBlocked = entity.IsBlocked;
@@ -227,7 +210,9 @@ namespace DAL.Concrete
                 user.Password = entity.Password;
                 user.Photo = entity.Photo;
                 user.Surname = entity.Surname;
+                context.SaveChanges();
             }
+            
         }
         #endregion
 
@@ -240,8 +225,7 @@ namespace DAL.Concrete
                 {
                     Id = user.Id,
                     AdditionalInfo = user.AdditionalInfo,
-                    Age = user.Age,
-                    DateLastVisit = user.DateLastVisit,
+                    Age = user.Age,                    
                     DateRegistration = user.DateRegistration,
                     Email = user.Email,
                     IsBlocked = user.IsBlocked,

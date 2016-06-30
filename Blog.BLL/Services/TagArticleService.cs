@@ -48,6 +48,12 @@ namespace Blog.BLL.Services
             tagArticleRepository.Update(tagArticle.ToDalTagArticle());
             uow.Commit();
         }
+
+        public void DeleteByArticleId(int articleId)
+        {
+            tagArticleRepository.DeleteByArticleId(articleId);
+            uow.Commit();
+        }
     }
 
 }

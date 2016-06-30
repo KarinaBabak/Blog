@@ -94,10 +94,20 @@ namespace DAL.Concrete
             {
                 foreach (var entry in tagArticle)
                 {
-                    context.Set<TagArticle>().Remove(entry);
-                    context.SaveChanges();
+                    context.Set<TagArticle>().Remove(entry);                    
+                }                
+            }
+            var comments = context.Set<Comment>().Where(a => a.ArticleId == entity.Id);
+            if(comments!= null)
+            {
+                foreach(var comment in comments)
+                {
+                    context.Set<Comment>().Remove(comment);
                 }
             }
+
+            context.SaveChanges();
+            
         }
    
         /// <summary>

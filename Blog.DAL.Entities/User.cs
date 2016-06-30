@@ -29,8 +29,7 @@ namespace Blog.DAL.Entities
         public byte[] Photo { get; set; }
         public string AdditionalInfo { get; set; }
         public bool IsBlocked { get; set; }
-        public DateTime DateRegistration { get; set; }
-        public DateTime? DateLastVisit { get; set; }
+        public DateTime DateRegistration { get; set; }        
 
         #region Navigation Properties
         public virtual ICollection<Article> Articles { get; set; }

@@ -13,10 +13,11 @@
     <div id="main">
         <div id="left_content" style="background-image: url('/Content/images/index.jpg')">
             <div id="txt">
-                <h1>@Html.DisplayFor(m => m.Title)</h1>
+                <h1>@Model.Title</h1>
                 <p id="date">@Html.DisplayFor(m => m.DatePublication)</p>
                 <p id="user"><img src="/Content/images/icon_user_white.png"/>
-                @Html.ActionLink(@Model.Blogger.Login, "ViewArticlesOfBlogger", new { controller = "Article", bloggerId = @Model.BloggerId })</p>
+                @Html.ActionLink(@Model.Blogger.Login, "GetBloggerProfile", new { controller = "Account", bloggerLogin = @Model.Blogger.Login }, new { @title = "Профиль пользователя" })
+                </p>
             </div>
         </div>
 
@@ -27,22 +28,32 @@
             <div id="article">
                 <div id="content">@Html.DisplayFor(m => m.Content)</div>
 
-                <div id="tags">@Html.Action("GetTagsOfArticle", "Tag", new { articleId = @Model.Id })</div>
-                <!--@Html.DisplayFor(m => m.CountShows)-->
+                <div id="tags">
+                    @Html.Action("GetTagsOfArticle", "Tag", new { articleId = @Model.Id })
+
+                    <span id="views">Просмотров: @Model.CountShows</span>
+                </div>
+
+                <div id="clear"></div>
                 
-                @if ((Request.IsAuthenticated && (Convert.ToInt32(Profile.GetPropertyValue("Id")) == Model.BloggerId)) || User.IsInRole("admin"))
+                @if (HttpContext.Current.User.IsInRole("admin") || (Request.IsAuthenticated && (Convert.ToInt32(Profile.GetPropertyValue("Id")) == Model.BloggerId)))
                 {
-                    @Html.ActionLink("Редактировать", "UpdateArticle", new { controller = "Article", articleId = @Model.Id})
-                    @Html.ActionLink("Удалить", "DeleteArticle", new { controller = "Article", articleId = @Model.Id, bloggerId = @Model.BloggerId })                              
+                    <div id="edit">
+                        <img src="/Content/images/icon_edit.png" /> @Html.ActionLink("Редактировать", "UpdateArticle", new { controller = "Article", articleId = @Model.Id })
+                        <img src="/Content/images/icon_delete.png" /> @Html.ActionLink("Удалить", "DeleteArticle", new { controller = "Article", articleId = @Model.Id, bloggerId = @Model.BloggerId })
+                    </div>                            
                 }
-                
-                @if (Request.IsAuthenticated) { 
-                    @Html.Action("AddComment", new { controller = "Comment", articleId = Model.Id })
-                }
+               
 
                 <div id="all_comments">
                     @Html.Action("GetCommentsOfArticle", new { controller = "Comment", articleId = @Model.Id })
                 </div>
+
+                @if (Request.IsAuthenticated)
+                {
+                    @Html.Action("AddComment", new { controller = "Comment", articleId = Model.Id })
+                }
+                
             </div>
         </div>
     </div>

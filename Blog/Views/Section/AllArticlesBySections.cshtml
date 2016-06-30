@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Blog.Models.SectionModel>
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Архив</title>
+    @Html.Partial("~/Views/Shared/Header.cshtml")
+</head>
+<body>
+    <div id="main">
+        <div id="left_content" style="background-image: url('/Content/images/archive.jpg')">
+            <div id="txt">
+                <h1>Архив</h1>
+            </div>
+        </div>
+
+        <div id="right_content">
+            @Html.Partial("~/Views/Shared/TopMenu.cshtml")
+
+            @foreach (var item in Model)
+            {
+                if (item.Articles.Count() != 0)
+                {
+                    <h2 id="section_name">@item.Name</h2>
+                
+                    foreach (var article in item.Articles)
+                    {
+                        <div id="archive">
+                            @Html.ActionLink(@article.Title, "ViewArticle", new { controller = "Article", articleId = article.Id })
+                            <span id="date">@article.DatePublication.ToString().Substring(0, article.DatePublication.ToString().IndexOf(' '))</span>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+</body>
+</html>
+

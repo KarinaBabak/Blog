@@ -15,5 +15,7 @@ namespace Blog.BLL.Interface.Services
         void CreateTagArticle(TagArticleEntity tagArticle);
         void DeleteTagArticle(TagArticleEntity tagArticle);
         void UpdateTagArticle(TagArticleEntity tagArticle);
+
+        void DeleteByArticleId(int articleId);
     }
 }

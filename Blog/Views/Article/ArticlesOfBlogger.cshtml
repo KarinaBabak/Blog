@@ -10,22 +10,34 @@
     @Html.Partial("~/Views/Shared/Header.cshtml")
 </head>
 <body>
+    
     <div id="main">
         <div id="left_content" style="background-image: url('/Content/images/index.jpg')">
             <div id="txt">
                 <h1>Блог пользователя</h1>
-                <p id="user"><img src="/Content/images/icon_user_white.png" /> @Html.ActionLink(@Model.FirstOrDefault().Blogger.Login, "ViewArticlesOfBlogger", new { controller = "Article", bloggerId = @Model.FirstOrDefault().Blogger.Id })</p>
+                <p id="user"><img src="/Content/images/icon_user_white.png"/> 
+                @Html.ActionLink((string)ViewBag.BloggerLogin, "GetBloggerProfile", new { controller = "Account", bloggerLogin = @ViewBag.BloggerLogin }, new { @title = "Профиль пользователя" })
+                </p>
             </div>
         </div>
 
         <div id="right_content">
             @Html.Partial("~/Views/Shared/TopMenu.cshtml")
 
-            @foreach (var article in Model)
+            @if (Model.Count() != 0)
             {
-                @Html.Action("PreViewArticle", "Article", new { articleId = article.Id })
+                @Html.Action("ShowPages", "Article", new { models = Model })
+                <!--foreach (var article in Model)
+                {
+                    Html.Action("PreViewArticle", "Article", new { articleId = article.Id });
+                }-->
+            }
+            else
+            {
+                <h3>У блоггера нет статей</h3>
             }
         </div>
     </div>
+    
 </body>
 </html>

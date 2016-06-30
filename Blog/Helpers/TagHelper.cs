@@ -25,30 +25,31 @@ namespace Blog.Models
         }              
              
         public static void CreateArticle(string tagsOfArticle, int articleId)
-        {
+        {           
             if (tagsOfArticle == null) return;
             string[] tags = tagsOfArticle.Split(',');
             var results = TagService.GetAllTagEntities();
-            foreach (string tag in tags)
+            foreach (string entry in tags)
             {
-                
-                var tagFromResult = results.FirstOrDefault(t => t.Name.Contains(tag));
+                string tag = entry.Trim();
+                var tagFromResult = results.FirstOrDefault(t => t.Name == tag);
                 
                 if (tagFromResult == null)
                 {
                     TagService.CreateTag(new TagEntity()
                         {
-                            Name = tag.Trim()
+                            Name = tag
                         });           
                 }
-              
-                var tagFromDb = TagService.GetAllTagEntities().FirstOrDefault(t => t.Name.Contains(tag)); 
+
+                var tagFromDb = TagService.GetAllTagEntities().FirstOrDefault(t => t.Name == tag); 
 
                 TagArticleService.CreateTagArticle(new TagArticleEntity()
                 {
                     ArticleId = articleId,
                     TagId = tagFromDb.Id
                 });
+            
             }            
         }
                
@@ -62,7 +63,12 @@ namespace Blog.Models
         {
             var tags = TagService.GetTagsOfArticle(articleId);
             if (tags != null) return tags.Select(t=>t.Name);
-            else return null;
+            return null;
+        }
+
+        public static void DeleteTagArticle(int articleId)
+        {
+            TagArticleService.DeleteByArticleId(articleId);
         }
         
     }

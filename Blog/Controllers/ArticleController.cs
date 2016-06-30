@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Threading.Tasks;
 
 using Blog.Models;
 using Blog.ViewModels;
@@ -30,9 +29,10 @@ namespace Blog.Controllers
             return View();
         }
 
+        #region Create
         [HttpGet]
         public ActionResult CreateArticle()
-        {            
+        {         
             return View();
         }
 
@@ -42,18 +42,24 @@ namespace Blog.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize]
         public ActionResult CreateArticle(ArticleViewModel model)
         {
             model.DatePublication = DateTime.Now;
             model.CountShows = 0;
-            model.CountLikes = 0;            
+            model.CountLikes = 0;
+            if (model.SectionId == 0)
+            {
+                model.SectionId = 1;
+            }
             model.BloggerId = Convert.ToInt32(HttpContext.Profile.GetPropertyValue("Id"));
             articleService.CreateArticle(model.ToBllArticle());
-            var articles = articleService.GetAllArticleEntities().Where(a=>a.Title == model.Title && a.DatePublication == model.DatePublication).FirstOrDefault();
-            TagHelper.CreateArticle(model.Tags, articles.Id);
-            
-            return RedirectToAction("Index", "Home");
+            var article = articleService.GetAllArticleEntities().Where(a=>a.Title == model.Title && a.DatePublication == model.DatePublication).FirstOrDefault();
+            TagHelper.CreateArticle(model.Tags, article.Id);
+
+            return RedirectToAction("ViewArticle", "Article", new { articleId = article.Id });           
         }
+        #endregion
 
         /// <summary>
         /// Viewing preview of last 10 articles
@@ -61,9 +67,9 @@ namespace Blog.Controllers
         /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult TopPreViewArticle()
+        public ActionResult TopPreViewArticle(int page = 1)
         {
-            var articles = articleService.GetAllArticleEntities().OrderByDescending(a => a.DatePublication).Take(10).
+            var articles = articleService.GetAllArticleEntities().OrderByDescending(a => a.DatePublication).
                 Select(a => a.ToModelArticle());
 
             List<ArticleModel> models = new List<ArticleModel>();
@@ -73,8 +79,13 @@ namespace Blog.Controllers
                 models.Add(article);
             }
 
-            return PartialView(models);
+            int pageSize = 3;
+            IEnumerable<ArticleModel> articleModels = models.Skip((page - 1) * pageSize).Take(pageSize);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = models.Count };
+            @ViewBag.PageInfo = pageInfo;
+            return PartialView(articleModels);             
         }
+                
 
         /// <summary>
         /// Show preview of article
@@ -111,7 +122,7 @@ namespace Blog.Controllers
         /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult SearchByTag(int tagId)
+        public ActionResult SearchByTag(int tagId, int page = 1)
         {
             var articles = articleService.GetArticleEntityByTag(tagId).Select(a=>a.ToModelArticle());
 
@@ -122,45 +133,81 @@ namespace Blog.Controllers
                 models.Add(article);
             }
             ViewBag.TagId = tagId;
-            return View("SearchByTag", models);
+
+            int pageSize = 3;
+            IEnumerable<ArticleModel> articleModels = models.Skip((page - 1) * pageSize).Take(pageSize);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = models.Count() };
+            @ViewBag.PageInfo = pageInfo;
+            return View("SearchByTag", articleModels);
         }
 
         [HttpGet]
         [AllowAnonymous]
         public ActionResult ViewArticlesOfBlogger(int bloggerId)
         {
-            var articles = articleService.GetByBloggerId(bloggerId).Select(a=>a.ToModelArticle());
+            var user = userService.GetUserEntityById(bloggerId);
+            var articles = articleService.GetByBloggerId(bloggerId).OrderByDescending(a => a.DatePublication).Select(a=>a.ToModelArticle());
             List<ArticleModel> models = new List<ArticleModel>();
             foreach (var article in articles)
             {
                 article.Blogger = userService.GetUserEntityById(article.BloggerId).ToModelUser();
                 models.Add(article);
             }
+            @ViewBag.BloggerLogin = user.Login;
             return View("ArticlesOfBlogger", models);
         }
 
+        public ActionResult ShowPages(IEnumerable<ArticleModel> models, int page = 1)
+        {            
+            int pageSize = 3;
+            IEnumerable<ArticleModel> articleModels = models.Skip((page - 1) * pageSize).Take(pageSize);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = models.Count() };
+            @ViewBag.PageInfo = pageInfo;
+            return PartialView("TopPreViewArticle", articleModels);
+        }
+
+        #region Update
         [HttpGet]
         public ActionResult UpdateArticle(int articleId)
         {
-            var article = articleService.GetArticleEntityById(articleId).ToViewModelArticle();
-            
+            var article = articleService.GetArticleEntityById(articleId).ToViewModelArticle();            
+            var tags = TagHelper.GetTagsOfArticle(articleId).ToArray();
+
+            for (int i = 0; i < tags.Length - 1; i++ )
+            {                
+                    article.Tags += (tags[i] + ", ");
+            }
+
+            if (tags.Length > 0)  article.Tags += tags[tags.Length - 1];
+
             return View(article);
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult UpdateArticle(ArticleViewModel model)
         {
-            model.BloggerId = Convert.ToInt32(HttpContext.Profile.GetPropertyValue("Id"));            
+            model.DatePublication = DateTime.Now;             
+            TagHelper.DeleteTagArticle(model.Id);
             TagHelper.CreateArticle(model.Tags, model.Id);
             articleService.UpdateArticle(model.ToBllArticle());
-            return ViewArticlesOfBlogger(model.BloggerId);
+            return RedirectToAction("ViewArticle", "Article", new { articleId = model.Id }); 
         }
+        #endregion
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult DeleteArticle(int articleId, int bloggerId)
         {
             articleService.DeleteArticle(articleService.GetArticleEntityById(articleId));
             return ViewArticlesOfBlogger(bloggerId);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ShowAllArticles()
+        {
+            //var allArticles = articleService.get
+            return null;
         }
            
         

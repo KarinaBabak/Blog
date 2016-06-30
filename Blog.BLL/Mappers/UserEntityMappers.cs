@@ -19,9 +19,7 @@ namespace Blog.BLL.Mappers
                 {
                     Id = userEntity.Id,
                     AdditionalInfo = userEntity.AdditionalInfo,
-                    Age = userEntity.Age,
-                    DateLastVisit = userEntity.DateLastVisit,
-                    DateRegistration = userEntity.DateRegistration,
+                    Age = userEntity.Age,               
                     Email = userEntity.Email,
                     IsBlocked = userEntity.IsBlocked,
                     Login = userEntity.Login,
@@ -42,8 +40,7 @@ namespace Blog.BLL.Mappers
                 {
                     Id = dalUser.Id,
                     AdditionalInfo = dalUser.AdditionalInfo,
-                    Age = dalUser.Age,
-                    DateLastVisit = dalUser.DateLastVisit,
+                    Age = dalUser.Age,                   
                     DateRegistration = dalUser.DateRegistration,
                     Email = dalUser.Email,
                     IsBlocked = dalUser.IsBlocked,

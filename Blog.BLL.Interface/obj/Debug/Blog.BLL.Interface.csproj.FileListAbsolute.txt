@@ -2,4 +2,3 @@ D:\Epam\Итог\Blog\Blog\Blog.BLL.Interface\bin\Debug\Blog.BLL.Interface.dll
 D:\Epam\Итог\Blog\Blog\Blog.BLL.Interface\bin\Debug\Blog.BLL.Interface.pdb
 D:\Epam\Итог\Blog\Blog\Blog.BLL.Interface\obj\Debug\Blog.BLL.Interface.dll
 D:\Epam\Итог\Blog\Blog\Blog.BLL.Interface\obj\Debug\Blog.BLL.Interface.pdb
-D:\Epam\Итог\Blog\Blog\Blog.BLL.Interface\obj\Debug\Blog.BLL.Interface.csprojResolveAssemblyReference.cache

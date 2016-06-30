@@ -11,7 +11,7 @@ namespace Blog.Models
         [ScaffoldColumn(false)]
         public int Id { get; set; }
 
-        [Display(Name = "Название раздела")]
+        [Display(Name = "Название раздела:")]
         public string Name { get; set; }
     }
 }

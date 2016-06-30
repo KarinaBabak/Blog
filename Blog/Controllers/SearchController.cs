@@ -61,7 +61,7 @@ namespace Blog.Controllers
             
             ViewBag.QuerySearch = model.SearchString;
 
-            return View(list);
+            return View("",list);
         }
 
         [HttpGet]

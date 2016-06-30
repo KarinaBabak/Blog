@@ -11,7 +11,7 @@ namespace Blog.ViewModels
         [ScaffoldColumn(false)]
         public int Id { get; set; }
 
-        [Display(Name = "Сообщение")]
+        [Display(Name = "Комментарий:")]
         public string Content { get; set; }
 
         [Required]

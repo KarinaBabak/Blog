@@ -75,6 +75,7 @@ namespace DAL.Concrete
             {
                 context.Set<TagArticle>().Remove(tagArticle);
             }
+            context.SaveChanges();
         }
 
         /// <summary>
@@ -90,6 +91,19 @@ namespace DAL.Concrete
                 tagArticle.ArticleId = entity.ArticleId;
                 tagArticle.TagId = entity.TagId;
             }
+        }
+
+        public void DeleteByArticleId (int articleId)
+        {
+            var tagArticle = context.Set<TagArticle>().Where(a => a.ArticleId == articleId);
+            if(tagArticle!=null)
+            {
+                foreach(var entry in tagArticle)
+                {
+                    context.Set<TagArticle>().Remove(entry);
+                }
+            }
+            context.SaveChanges();
         }
     }
 }

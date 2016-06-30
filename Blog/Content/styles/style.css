@@ -4,8 +4,6 @@
     outline:none !important;
 }
 body{
-    margin:0;
-    padding:0;
     font:17px/1.5 'PT Serif',"Helvetica Neue","Helvetica",Arial,sans-serif;
     background-color: #fdfdfd;
     color: #222;
@@ -14,6 +12,17 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto Condensed',sans-serif;
     font-weight: 700;
 }
+p {
+    margin: 20px 0;
+}
+a {
+    color: #333;
+    text-decoration: none;
+}
+ a:hover {
+    text-decoration: underline !important;
+}
+
 #clear{
     clear:both;
 }
@@ -62,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #right_content{
     width: 67%;
-   margin-right: 4%;
+    margin: 0 4% 4% 4%;
     float: right;
 }
 
@@ -84,7 +93,8 @@ h1, h2, h3, h4, h5, h6 {
     padding: 14px 0;
 }
 #right_content #top_menu a:hover {
-    color: #777; 
+    color: #777;
+    text-decoration: none !important;
 }
 
 #right_content #top_menu input#search{
@@ -151,7 +161,8 @@ h1, h2, h3, h4, h5, h6 {
     padding: 10px 0;
 }
 #right_content #top_menu #hide img{
-    margin: 1px 10px 0 0;
+    margin: 10px 16px 0 9px;
+    float: left;
 }
 #right_content #top_menu #live_search{
     width: 280px;
@@ -182,19 +193,34 @@ input:-webkit-autofill {
     font-size: 14px;
     display: block;
 }
-#right_content form input{
+#right_content form input, #right_content form textarea{
     border: 1px solid #cacaca;
     padding: 6px 8px;
     font-size: 16px;
     width: 70%;
     margin-bottom: 8px;
 }
-
+#right_content form textarea{
+    width: 70%;
+}
 #right_content form input[type=submit] {
     width: 40%;
     float: right;
     margin-right: 26.5%;
 }
+#right_content form[action*=ateArticle]{
+    width: 100%;
+}
+#right_content form[action*=ateArticle] input, #right_content form[action*=ateArticle] textarea{
+    width: 98%;
+}
+#right_content form[action*=ateArticle] textarea{
+    height: 360px;
+}
+#right_content form[action*=ateArticle] input[type=submit] {
+    margin-right: 0;
+}
+
 #right_content form .field-validation-error, #right_content #error_registration span {
     color: #ea1135;
     font-size: 14px;
@@ -212,32 +238,33 @@ input:-webkit-autofill {
 #right_content label[for=RememberMe]{
     margin: 10px 0 -14px 0;
 }
-#article a:hover {
-    text-decoration: underline !important;
+#article.preview {
+    max-height: 250px;
+    overflow: hidden;
 }
 #article #title h2 a {
-    color: #333;
-    text-decoration: none;
     font-size: 32px;
 }
 #article #title #info {
     float: right;
-    font-size: 12px;
-    color: #999;
     margin: -33px 20px 0 0;
 }
-#article #title #info #date{
+#article #date{
     font-size: 11px;
+    margin-right: 12px;
+    color: #999;
 }
-#article #title #info #user a{
+#article #user a{
     text-decoration: none;
     color: #555;
+    font-size: 12px;
 }
-#article #title #info #user img {
-    margin: 0 0 -2px 12px;
+#article #user img {
+    margin: 0 0 -2px 0;
 }
 
-#article #tags a{
+
+#article #tags, #article #tags a {
     text-decoration: none;
     font-size: 12px;
     color: #555;
@@ -246,10 +273,70 @@ input:-webkit-autofill {
 #article #tags a:before {
     content:"#"
 }
+#article #tags #views{
+    float: right;
+}
 #article #content {
     margin: 24px 0;
+    white-space: pre-line;
 }
-
+#article #all_comments{
+    margin-top: 30px;
+}
+#article #comment{
+    margin: 16px 0;
+    font-size: 14px;
+}
+#article #comment:hover{
+    color: #777; 
+}
+#article #comment #top{
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 3px;
+}
+#article #comment #date{
+    float: right;
+}
+#article #comment a[href*=DeleteComment], #right_content #section a{
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 0px 3px;
+    margin: 0 0 0 6px;
+    font-size: 11px;
+}
+#article #comment a[href*=DeleteComment]:hover, #right_content #section a:hover {
+    text-decoration: none !important;
+    background-color: #333;
+    color: #fff;
+}
+#article form[action*=AddComment]{
+    width: 100%;
+}
+#article form[action*=AddComment] textarea{
+    width: 60%;
+    padding: 6px 8px;
+    height: 106px;
+}
+#right_content #edit{
+    margin: 20px 0;
+    text-align: right;
+    font-weight: 700;
+    font-family: "Roboto Condensed",sans-serif;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+#right_content #edit img{
+    margin: 10px 12px 0 29px;
+}
+#right_content form[action*=AddComment] input[type=submit]{
+    width: 20%;
+    float: right;
+    margin-right: 37.9%;
+}
+#right_content #section{
+    width: 60%;
+    margin: 30px auto;
+}
 #right_content #separate {
     margin: 30px 0;
     text-align: center;
@@ -257,18 +344,56 @@ input:-webkit-autofill {
     font-family: initial;
 }
 
+#right_content #paginator{
+    text-align: center;
+    margin-top: 70px;
+}
+
+#right_content #paginator a{
+    padding: 5px 11px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    margin: 0 4px;
+    font-family: "Roboto Condensed",sans-serif;
+    font-weight: 700;
+}
+#right_content #paginator a:hover{
+    text-decoration: none !important;
+}
+#right_content #paginator a.now{
+    background-color: #333;
+    color: #fff;
+}
+
+#right_content #archive{
+    padding: 8px 10px;
+    border-bottom: 1px dotted #eae4da;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+#right_content #section_name{
+    margin: 40px 0 10px 0;
+}
+#archive #date{
+    font-size: 11px;
+    float: right;
+    color: #bdbdbd;
+}
+
 .button {
     transition: all 50ms;
     border: 2px solid #0f3d79 !important;
     color: #063879;
     border-radius: 6px;
-    padding: 15px 8px !important;
+    padding: 14px 8px 12px 8px !important;
     background-color: #FFF;
     font-family: "Roboto Condensed",sans-serif;
     text-transform: uppercase;
     font-weight: 700;
     margin-top: 20px;
     cursor: pointer;
+    font-size: 14px !important;
+    width: 220px !important;
 }
 .button:hover {
     border: 2px solid #0c3975 !important;

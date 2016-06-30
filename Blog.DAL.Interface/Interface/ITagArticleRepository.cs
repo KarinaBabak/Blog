@@ -10,6 +10,6 @@ namespace Blog.DAL.Interface.Interface
 {
     public interface ITagArticleRepository: IRepository<DalTagArticle>
     {
-        //IEnumerable<DalTagArticle> GetByArticleId(int articleId);
+        void DeleteByArticleId(int articleId);
     }
 }

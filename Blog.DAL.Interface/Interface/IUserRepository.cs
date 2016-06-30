@@ -12,8 +12,7 @@ namespace Blog.DAL.Interface.Interface
     {
         DalUser GetByLogin(string login);        
         IEnumerable<DalUser> GetAllBesidesAdmin();
-        IEnumerable<DalUser> GetBlockedUsers();
-        DateTime? GetDateLastVisit(int id);
+        IEnumerable<DalUser> GetBlockedUsers();        
         void BlockUser(int id);
         void UnBlockUser(int id);
     }

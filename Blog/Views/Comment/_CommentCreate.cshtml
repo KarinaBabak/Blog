@@ -3,7 +3,8 @@
 @using (Ajax.BeginForm("AddComment", "Comment", new { articleId = ViewBag.ArticleId }, new AjaxOptions
 {
     HttpMethod = "Post",
-    UpdateTargetId = "all_comments"
+    UpdateTargetId = "all_comments",
+    OnSuccess = "input_clear_comment"
 }))
 {
 
@@ -11,8 +12,8 @@
     @Html.ValidationSummary(true, "")
     @Html.LabelFor(model => model.Content)
     
-    @Html.TextAreaFor(model => model.Content)
+    @Html.TextAreaFor(model => model.Content, new { @placeholder = "Ваш комментарий" })
     @Html.ValidationMessageFor(model => model.Content)
     
-    <input type="submit" class="button" value="Ответить" id="send_comment" />
+    <input type="submit" class="button" value="Отправить" id="send_comment" />
 }

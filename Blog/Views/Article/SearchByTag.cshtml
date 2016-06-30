@@ -1,4 +1,8 @@
-﻿@model IEnumerable<Blog.Models.ArticleModel>
+﻿@using Blog.Helpers
+@using Blog.Models
+
+
+@model IEnumerable<Blog.Models.ArticleModel>
 
 @{
     Layout = null;
@@ -21,7 +25,15 @@
         <div id="right_content">
             @Html.Partial("~/Views/Shared/TopMenu.cshtml")
 
-            @Html.Partial("~/Views/Article/TopPreViewArticle.cshtml")
+            @foreach (var item in Model)
+            {
+                @Html.Action("PreViewArticle", "Article", new { articleId = item.Id })
+            }
+            
+            <div id="paginator">
+                @Html.PageLinks((PageInfo)ViewBag.PageInfo, x => Url.Action("SearchByTag", new { controller = "Article", tagId = @ViewBag.TagId, page = x }))
+            </div>
+            
         </div>
     </div>
 </body>

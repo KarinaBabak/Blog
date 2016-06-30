@@ -16,6 +16,8 @@ namespace ORM
         public BlogModel():
             base("name=BlogModel")
         {
+            Database.SetInitializer<BlogModel>(null);
+            //Database.SetInitializer(new DropCreateDB());
         }
 
         #region 

@@ -147,6 +147,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
@@ -154,10 +155,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\PageHelper.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Mappers\MvcMappers.cs" />
     <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\PageInfo.cs" />
+    <Compile Include="Models\SectionModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="ViewModels\AllSectionsViewModel.cs" />
     <Compile Include="ViewModels\ArticleViewModel.cs" />
@@ -268,7 +272,6 @@
     <Content Include="Views\Shared\TopMenu.cshtml" />
     <Content Include="Views\Article\CreateArticle.cshtml" />
     <Content Include="Views\Section\ShowAllSections.cshtml" />
-    <Content Include="Views\Shared\Dropdown.cshtml" />
     <Content Include="Views\Account\Blogger.cshtml" />
     <Content Include="Views\Tag\TagsOfArticle.cshtml" />
     <Content Include="Views\Article\ViewArticle.cshtml" />
@@ -282,6 +285,11 @@
     <Content Include="Views\Shared\_Search.cshtml" />
     <Content Include="Views\Comment\_CommentCreate.cshtml" />
     <Content Include="Views\Comment\_CommentsOfArticle.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Account\EditProfile.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Section\WorkWithSections.cshtml" />
+    <Content Include="Views\Section\AllArticlesBySections.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,14 +11,14 @@ namespace Blog.Models
         [ScaffoldColumn(false)]
         public int Id { get; set; }
 
-        [Display(Name="Заголовок статьи")]
+        [Display(Name="Заголовок статьи:")]
         [MaxLength(400, ErrorMessage = "Длинное название статьи")]    
         public string Title { get; set; }
 
-        [Display(Name="Содержимое статьи")]
+        [Display(Name="Содержимое статьи:")]
         public string Content { get; set; }
 
-        [Display(Name = "Теги к статье")]
+        [Display(Name = "Теги к статье:")]
         public string Tags { get; set; }
 
         [DataType(DataType.Date)]

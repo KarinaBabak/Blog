@@ -133,6 +133,27 @@ namespace Blog.Mappers
                 Blogger = sender
             };
         }
+        public static UserEntity ToBllUser(this UserModel model)
+        {
+            if (model != null)
+            {
+                return new UserEntity()
+                {
+                    Id = model.Id,
+                    Login = model.Login,
+                    Password = model.Password,
+                    Name = model.Name,
+                    Surname = model.Surname,
+                    Email = model.Email,
+                    DateRegistration = model.DateRegistration,
+                    Age = model.Age,
+                    AdditionalInfo = model.AdditionalInfo,
+                    Photo = model.Photo,
+                    IsBlocked = model.IsBlocked
+                };
+            }
+            return null;
+        }
 
         public static UserModel ToModelUser(this UserEntity entity)
         {
@@ -140,8 +161,7 @@ namespace Blog.Mappers
             {
                 Id = entity.Id,
                 AdditionalInfo = entity.AdditionalInfo,
-                Age = entity.Age,
-                DateLastVisit = entity.DateLastVisit,
+                Age = entity.Age,                
                 DateRegistration = entity.DateRegistration,
                 Email = entity.Email,
                 IsBlocked = entity.IsBlocked,
@@ -153,7 +173,7 @@ namespace Blog.Mappers
             };
         }
 
-        public static SectionViewModel ToModelSection(this SectionEntity entity)
+        public static SectionViewModel ToViewModelSection(this SectionEntity entity)
        {
             if(entity != null)
             {
@@ -165,6 +185,32 @@ namespace Blog.Mappers
             }
             return null;
        }
+
+        public static SectionModel ToModelSection(this SectionEntity entity)
+        {
+            if (entity != null)
+            {
+                return new SectionModel()
+                {
+                    Id = entity.Id,
+                    Name = entity.Name
+                };
+            }
+            return null;
+        }
+
+        public static SectionEntity ToBllSection(this SectionViewModel model)
+        {
+            if (model != null)
+            {
+                return new SectionEntity()
+                {
+                    Id = model.Id,
+                    Name = model.Name
+                };
+            }
+            return null;
+        }
 
         public static TagViewModel ToModelTag(this TagEntity model)
         {

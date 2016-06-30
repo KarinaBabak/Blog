@@ -18,6 +18,6 @@ namespace Blog.Models
         public string AdditionalInfo { get; set; }
         public bool IsBlocked { get; set; }
         public DateTime DateRegistration { get; set; }
-        public DateTime? DateLastVisit { get; set; }
+        
     }
 }
